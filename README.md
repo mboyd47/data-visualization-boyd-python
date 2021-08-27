@@ -1,2 +1,2 @@
-# Exploring Visulations Using R and Python
+# Exploring Visualizations Using R and Python
 
