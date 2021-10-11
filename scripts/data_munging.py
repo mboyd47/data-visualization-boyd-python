@@ -33,3 +33,18 @@ alt.Chart(deaths[deaths.value != 0]).mark_circle(opacity=1).encode(
 # %%
 world_pop2 = world_pop2.assign(avg_pop = lambda world_pop2: (world_pop2.Year_2014 + world_pop2.Year_2015)/2)
 # %%
+pd.crosstab(index=ebola['Country'],columns='value')
+# %%
+guinea_pop = world_pop2.query('Country == "Guinea"')['avg_pop']
+liberia_pop = world_pop2.query('Country == "Liberia"')['avg_pop']
+mali_pop =  world_pop2.query('Country == "Mali"')['avg_pop']
+nigeria_pop =  world_pop2.query('Country == "Nigeria"')['avg_pop']
+sierra_leone_pop =  world_pop2.query('Country == "Sierra Leone"')['avg_pop']
+us_pop =  world_pop2.query('Country == "United States of America"')['avg_pop']
+#%%
+#gprop = (deaths.query('Country == "Guinea"')['value'])/guinea_pop
+
+# %%
+death_pop = pd.DataFrame({"Country": ['Guinea','Liberia','Mali','Nigeria',
+                            'Sierra Leone','United States of America'],
+                        "Prop":[]})
