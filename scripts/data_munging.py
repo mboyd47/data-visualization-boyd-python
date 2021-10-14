@@ -59,9 +59,17 @@ deaths = deaths.assign(
 )
 #%%
 #dot plot with proportions
-alt.Chart(deaths[deaths.value != 0]).mark_circle(opacity=1).encode(
+alt.Chart(deaths[deaths.value != 0]).mark_area(opacity=1).encode(
     alt.X('Date:T'),
     alt.Y('proportion'),
+    alt.Color('Country'),
+    alt.Facet('Country')
+)
+# %%
+#area plots with raw counts
+alt.Chart(deaths[deaths.value != 0]).mark_area(opacity=1).encode(
+    alt.X('Date:T'),
+    alt.Y('value'),
     alt.Color('Country'),
     alt.Facet('Country')
 )
