@@ -7,9 +7,6 @@ import altair as alt
 ebola = pd.read_csv("/Users/marissaboyd/Downloads/ebola_data_db_format.csv")
 world_pop = pd.read_csv("/Users/marissaboyd/Downloads/population-figures-by-country-csv_csv.csv")
 # %%
-#saved data to data folder
-#ebola.to_csv("/Users/marissaboyd/git/data-visualization-boyd-python/data/ebola.csv")
-#world_pop.to_csv("/Users/marissaboyd/git/data-visualization-boyd-python/data/world_pop.csv")
 ebola = ebola.loc[ebola['Country'] != 'Liberia 2', ['Indicator','Country','Date','value']]
 #%%
 #subsetting world_pop df to only include 2014 and 2015
@@ -25,19 +22,30 @@ ebola = ebola[ebola.Date != '2016-03-23']
 deaths = ebola[ebola.Indicator == 'Cumulative number of confirmed, probable and suspected Ebola deaths'].reset_index(drop=True)
 cases = ebola[ebola.Indicator == 'Cumulative number of confirmed, probable and suspected Ebola cases'].reset_index(drop=True)
 #%%
-#dot plot with raw counts
-alt.Chart(deaths[deaths.value != 0]).mark_circle(opacity=1).encode(
-    alt.X('Date:T'),
-    alt.Y('value'),
-    alt.Color('Country'),
-    alt.Facet('Country')
-).resolve_scale(
-    y='independent'
-)
-# %%
 #averaging each country's pop over the two years
 world_pop2 = world_pop2.assign(avg_pop = lambda world_pop2: (world_pop2.Year_2014 + world_pop2.Year_2015)/2)
 # %%
+##########################
+#saved data to data folder
+ebola.to_csv("/Users/marissaboyd/git/data-visualization-boyd-python/data/ebola.csv")
+world_pop2.to_csv("/Users/marissaboyd/git/data-visualization-boyd-python/data/world_pop.csv")
+deaths.to_csv("/Users/marissaboyd/git/data-visualization-boyd-python/data/deaths.csv")
+cases.to_csv("/Users/marissaboyd/git/data-visualization-boyd-python/data/cases.csv")
+##########################
+#%%
+
+
+
+
+
+
+
+
+
+
+
+
+
 #creating objects containing each contry's pop count
 guinea_pop = world_pop2.query('Country == "Guinea"')['avg_pop'].values[0]
 liberia_pop = world_pop2.query('Country == "Liberia"')['avg_pop'].values[0]
@@ -66,11 +74,4 @@ alt.Chart(deaths[deaths.value != 0]).mark_area(opacity=1).encode(
     alt.Facet('Country')
 )
 # %%
-#area plots with raw counts
-alt.Chart(deaths[deaths.value != 0]).mark_area(opacity=1).encode(
-    alt.X('Date:T'),
-    alt.Y('value'),
-    alt.Color('Country'),
-    alt.Facet('Country')
-)
-# %%
+
