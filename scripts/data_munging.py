@@ -74,4 +74,3 @@ alt.Chart(deaths[deaths.value != 0]).mark_area(opacity=1).encode(
     alt.Facet('Country')
 )
 # %%
-
