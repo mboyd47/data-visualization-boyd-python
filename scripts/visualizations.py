@@ -79,3 +79,9 @@ labels = base.mark_text(align='left', dx=5).encode(
 )
 alt.layer(area, line, labels).properties(title = 'A Visualization of the Ebola Outbreak, 2014-2015')
 # %%
+from plotnine import *
+import plotnine as plt
+# %%
+(ggplot(all, aes(fill = 'Country', values = 'death_count')) +
+    geom_waffle(color = "white", size = .25, n_rows = 100))
+# %%
