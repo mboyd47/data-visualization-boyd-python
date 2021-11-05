@@ -23,9 +23,9 @@ alt.Chart(deaths[deaths.death_count != 0]).mark_circle(opacity=1).encode(
     alt.Y('death_count'),
     alt.Color('Country'),
     alt.Facet('Country')
-).resolve_scale(
-    y='independent'
-)
+)#.resolve_scale(
+  #  y='independent'
+#)
 # %%
 #line plot with raw counts
 chart1 = (alt.Chart(deaths[deaths.death_count != 0]).mark_line(opacity=1).encode(
@@ -79,9 +79,20 @@ labels = base.mark_text(align='left', dx=5).encode(
 )
 alt.layer(area, line, labels).properties(title = 'A Visualization of the Ebola Outbreak, 2014-2015')
 # %%
-from plotnine import *
-import plotnine as plt
+import matplotlib.pyplot as plt
+from pywaffle import Waffle
 # %%
-(ggplot(all, aes(fill = 'Country', values = 'death_count')) +
-    geom_waffle(color = "white", size = .25, n_rows = 100))
+guinea = deaths[deaths.Country == "Guinea"]
+liberia = deaths[deaths.Country == "Liberia"]
+sierra_leone = deaths[deaths.Country == "Sierra Leone"]
+#%%
+sum = deaths.groupby(by="Country").sum("death_count")
+#%%
+plt.figure(FigureClass=Waffle, rows=10, 
+        values=sum['death_count']/10000,
+        labels = ['Guinea', 'Liberia','Sierra Leone'],
+        legend = {'loc':'best'},
+        title = {'label':'Ebola Death Count, 2014-2015','loc':'left'},
+        colors = ['lightgrey','darkgrey','dimgrey'])
+plt.show()
 # %%

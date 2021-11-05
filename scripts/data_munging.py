@@ -47,19 +47,19 @@ cases.to_csv("/Users/marissaboyd/git/data-visualization-boyd-python/data/cases.c
 
 
 #creating objects containing each contry's pop count
-guinea_pop = world_pop2.query('Country == "Guinea"')['avg_pop'].values[0]
-liberia_pop = world_pop2.query('Country == "Liberia"')['avg_pop'].values[0]
-mali_pop =  world_pop2.query('Country == "Mali"')['avg_pop'].values[0]
-nigeria_pop =  world_pop2.query('Country == "Nigeria"')['avg_pop'].values[0]
-sierra_leone_pop =  world_pop2.query('Country == "Sierra Leone"')['avg_pop'].values[0]
-us_pop =  world_pop2.query('Country == "United States"')['avg_pop'].values[0]
+guinea_pop = world_pop.query('Country == "Guinea"')['avg_pop'].values[0]
+liberia_pop = world_pop.query('Country == "Liberia"')['avg_pop'].values[0]
+mali_pop =  world_pop.query('Country == "Mali"')['avg_pop'].values[0]
+nigeria_pop =  world_pop.query('Country == "Nigeria"')['avg_pop'].values[0]
+sierra_leone_pop =  world_pop.query('Country == "Sierra Leone"')['avg_pop'].values[0]
+us_pop =  world_pop.query('Country == "United States"')['avg_pop'].values[0]
 #%%
 prop_conditions = [(deaths['Country'] == 'Guinea'), (deaths['Country'] == 'Liberia'),
                     (deaths['Country'] == 'Mali'), (deaths['Country'] == 'Nigeria'),
                     (deaths['Country'] == 'Sierra Leone'), (deaths['Country'] == 'United States of America')]
-prop_values = [(deaths['value']/guinea_pop)*100, (deaths['value']/liberia_pop)*100,
-                (deaths['value']/mali_pop)*100, (deaths['value']/nigeria_pop)*100,
-                (deaths['value']/sierra_leone_pop)*100, (deaths['value']/us_pop)*100]
+prop_values = [(deaths['death_count']/guinea_pop)*100, (deaths['death_count']/liberia_pop)*100,
+                (deaths['death_count']/mali_pop)*100, (deaths['death_count']/nigeria_pop)*100,
+                (deaths['death_count']/sierra_leone_pop)*100, (deaths['death_count']/us_pop)*100]
 # %%
 #creating new variable for deaths as proportion of country pop
 deaths = deaths.assign(
