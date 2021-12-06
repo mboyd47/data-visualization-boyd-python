@@ -62,7 +62,7 @@ alt.layer(area,line).properties(
 # Layered Chart in Altair showing case and death counts 
 # by country over time
 base = alt.Chart(all).encode(
-    alt.X('Date:T', axis = alt.Axis(title=None))
+    alt.X('Date:T', axis = alt.Axis(title=None, formatType = 'time', format = '%b %Y'))
 )
 area = base.mark_area(opacity=0.3).encode(
     alt.Y('case_count', axis = alt.Axis(title = 'Count of Cases (Area)')),
@@ -78,7 +78,10 @@ labels = base.mark_text(align='left', dx=5).encode(
     text='Country:N',
     color='Country:N'
 )
-chart = alt.layer(area, line, labels).properties(title = 'A Visualization of the Ebola Outbreak, 2014-2015')
+chart = alt.layer(area, line, labels).properties(
+                            title = 'A Visualization of the Ebola Outbreak, 2014-2015',
+                            width = 800, height = 300)
+#%%
 #saving first chart as html
 chart.save('ebola_outbreak_viz.html')
 ##########################################################################
@@ -96,10 +99,11 @@ chart2 = plt.figure(FigureClass=Waffle, rows=10,
         values=sum['death_count']/10000,
         labels = ['Guinea', 'Liberia','Sierra Leone'],
         legend = {'loc':'best'},
-        title = {'label':'Ebola Death Count, 2014-2015','loc':'left'},
+        title = {'label':'Ebola Death Count by Country, 2014-2015','loc':'left'},
         colors = ['lightgrey','darkgrey','dimgrey'])
 
 plt.show()
+#%%
 #saving second chart as pdf
 chart2.savefig('ebola_death_counts.pdf')
 # %%
