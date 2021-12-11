@@ -57,6 +57,13 @@ area = (alt.Chart(all).mark_area(opacity = .5).encode(
 alt.layer(area,line).properties(
     title = 'Ebola Case and Death Counts by Country',
     )
+
+
+
+
+
+
+    
 #%%
 ##########################################################################
 # Layered Chart in Altair showing case and death counts 
@@ -81,9 +88,6 @@ labels = base.mark_text(align='left', dx=5).encode(
 chart = alt.layer(area, line, labels).properties(
                             title = 'A Visualization of the Ebola Outbreak, 2014-2015',
                             width = 800, height = 300)
-#%%
-#saving first chart as html
-chart.save('ebola_outbreak_viz.html')
 ##########################################################################
 # %%
 import matplotlib.pyplot as plt
@@ -103,7 +107,5 @@ chart2 = plt.figure(FigureClass=Waffle, rows=10,
         colors = ['lightgrey','darkgrey','dimgrey'])
 
 plt.show()
-#%%
-#saving second chart as pdf
-chart2.savefig('ebola_death_counts.pdf')
+##########################################################################
 # %%
